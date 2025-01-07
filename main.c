@@ -1,4 +1,7 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 /**
  * main - Entry point of the program
@@ -16,25 +19,26 @@
 
 int main(int argc, char *argv[])
 {
-	char *input;
-	(void)argc;
-	(void)argv;
+    char *input;
+    (void)argc;
+    (void)argv;
 
-	while (1)
-	{
-		input = user_input();
-		printf("%s\n", input);
-		if (access(input, F_OK) == 0)
+    while (1)
+    {
+        input = user_input();
+        printf("%s\n", input);
 
-			execve(input, argv, NULL);
+        if (access(input, F_OK) == 0 && access(input, X_OK) == 0)
+        {
+            exec_command(input, argv);
+        }
+        else
+        {
+            printf("The command doesn't exist\n");
+        }
 
-		else
-		{
-			printf("Not an executable\n");
-		}
+        free(input);
+    }
 
-		free(input);
-	}
-
-	return (0);
+    return (0);
 }
