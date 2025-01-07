@@ -37,7 +37,11 @@ char *user_input()
 		exit(EXIT_FAILURE);
 	}
 
+<<<<<<< HEAD
 	for (i = 0; buffer[i] != '\0'; i++)
+=======
+	for (int i = 0; buffer[i] != '\0'; i++)
+>>>>>>> e332939 (WIP on first task)
 	{
 		if (buffer[i] == '\n')
 		{
