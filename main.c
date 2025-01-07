@@ -25,9 +25,9 @@ int main(int argc, char *argv[])
 		input = user_input();
 		printf("%s\n", input);
 		if (access(input, F_OK) == 0)
-		{
-			printf("Executable\n");
-		}
+
+			execve(input, argv, NULL);
+
 		else
 		{
 			printf("Not an executable\n");
