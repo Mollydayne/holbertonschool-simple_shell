@@ -26,15 +26,14 @@ int main(int argc, char *argv[])
     while (1)
     {
         input = user_input();
-        printf("%s\n", input);
-
+       
         if (access(input, F_OK) == 0 && access(input, X_OK) == 0)
         {
             exec_command(input, argv);
         }
         else
         {
-            printf("The command doesn't exist\n");
+            printf("./shell: No such file or directory\n");
         }
 
         free(input);

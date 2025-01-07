@@ -23,7 +23,7 @@ char *user_input()
 	int result = 0;
 	int i = 0;
 
-	printf("$ ");
+	printf("#cisfun$ ");
 	fflush(stdout);
 	
 	result = getline(&buffer, &bufferSize, stdin);

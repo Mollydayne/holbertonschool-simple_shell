@@ -43,7 +43,7 @@ void exec_command(char *input, char *argv[])
 
         if (status == 0)
         {
-            printf("The process has succeeded ( return code : 0)\n");
+            /* printf("The process has succeeded ( return code : 0)\n"); */
         }
         else if ((status & 0xFF) != 0)
         {
