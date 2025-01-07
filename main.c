@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "shell.h"
+#include "main.h"
 
 /**
  * main - Entry point
@@ -8,8 +6,20 @@
  * Return: Always 0
  */
 
-int main(void)
+int main(int argc, char *argv[])
 {
-printf("Hello u");
+	char *input;
+
+	while (1)
+	{
+		input = user_input();
+		if (access(input, F_OK) == 0)
+		{
+			printf("Executable\n");
+		}
+
+		free(input);
+	}
+
 	return (0);
 }
