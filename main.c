@@ -17,6 +17,8 @@
 int main(int argc, char *argv[])
 {
 	char *input;
+	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
@@ -25,6 +27,10 @@ int main(int argc, char *argv[])
 		if (access(input, F_OK) == 0)
 		{
 			printf("Executable\n");
+		}
+		else
+		{
+			printf("Not an executable\n");
 		}
 
 		free(input);
