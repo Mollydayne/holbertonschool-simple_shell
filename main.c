@@ -19,23 +19,49 @@
 
 int main(int argc, char *argv[])
 {
-    char *input;
+	size_t size = 0;
+	int i;
+	char *input, *executable, *cwd;
+    char **args;
     (void)argc;
     (void)argv;
+	
 
     while (1)
     {
-        input = user_input();
-       
-        if (access(input, F_OK) == 0 && access(input, X_OK) == 0)
+       input = user_input();
+
+        args = split_command(input);
+        if (args == NULL || args[0] == NULL)
         {
-            exec_command(input, argv);
+            free(input);
+            free(args);
+            continue;
+        }
+
+        executable = find_executable(args[0]);
+        if (executable == NULL)
+        {
+           cwd = getcwd(NULL, size);
+            if (cwd != NULL)
+            {
+                 fprintf(stderr, "%s/%s: %s: command not found\n", cwd, argv[0], args[0]);
+                free(cwd);
+            }
+			else
+            {
+                perror("getcwd");
+            }
         }
         else
         {
-            printf("./shell: No such file or directory\n");
+            exec_command(executable, args);
+            free(executable);
         }
 
+        for (i = 0; args[i] != NULL; i++)
+            free(args[i]);
+        free(args);
         free(input);
     }
 

@@ -30,8 +30,9 @@ void exec_command(char *input, char *argv[])
     }
     else if (pid == 0)
     {
-        execve(input, argv, NULL);
 
+        execve(input, argv, NULL);
+        
         perror("An error occured during execution");
         free(input);
         exit(EXIT_FAILURE);
