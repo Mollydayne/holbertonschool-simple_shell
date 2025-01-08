@@ -44,5 +44,6 @@ char *user_input()
 			break;
 		}
 	}
+
 	return (buffer);
 }
