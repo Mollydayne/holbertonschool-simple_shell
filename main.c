@@ -22,7 +22,6 @@ int main(int argc, char *argv[])
 	int pidStatus;
 	(void)argc;
 	(void)argv;
-	signal(SIGINT, signal_intercepter);
 
 	while (1)
 	{
