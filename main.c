@@ -10,7 +10,7 @@
  * @argv: The array of arguments passed to the program
  *
  * Description:
- * This program continuously prompts the user for input,
+ * This program continuously prompts the user for input
  * checks if the provided input corresponds to an accessible
  * file path, and prints "Executable" if the file exists.
  *
@@ -22,48 +22,47 @@ int main(int argc, char *argv[])
 	size_t size = 0;
 	int i;
 	char *input, *executable, *cwd;
-    char **args;
-    (void)argc;
-    (void)argv;
-	
+	char **args;
+	(void)argc;
+	(void)argv;
 
-    while (1)
-    {
-       input = user_input();
+	while (1)
+	{
+		input = user_input();
 
-        args = split_command(input);
-        if (args == NULL || args[0] == NULL)
-        {
-            free(input);
-            free(args);
-            continue;
-        }
+		args = split_command(input);
+		if (args == NULL || args[0] == NULL)
+		{
+			free(input);
+			free(args);
+			continue;
+		}
 
-        executable = find_executable(args[0]);
-        if (executable == NULL)
-        {
-           cwd = getcwd(NULL, size);
-            if (cwd != NULL)
-            {
-                 fprintf(stderr, "%s/%s: %d: %s: not found\n", cwd, argv[0], 1, args[0]);
-                free(cwd);
-            }
+		executable = find_executable(args[0]);
+		if (executable == NULL)
+		{
+			cwd = getcwd(NULL, size);
+			if (cwd != NULL)
+			{
+				fprintf(stderr, "%s/%s: %d: %s: not found\n", cwd, argv[0], 1, args[0]);
+				free(cwd);
+			}
 			else
-            {
-                perror("getcwd");
-            }
-        }
-        else
-        {
-            exec_command(executable, args);
-            free(executable);
-        }
+			{
+				perror("getcwd");
+			}
+		}
+		else
+		{
+			exec_command(executable, args);
+			free(executable);
+		}
 
-        for (i = 0; args[i] != NULL; i++)
-            free(args[i]);
-        free(args);
-        free(input);
-    }
+		for (i = 0; args[i] != NULL; i++)
+			free(args[i]);
+		free(args);
+		free(input);
+	}
 
-    return (0);
+	return (0);
 }
