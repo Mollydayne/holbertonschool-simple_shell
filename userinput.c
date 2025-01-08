@@ -18,8 +18,11 @@ char *user_input()
 	ssize_t result = 0;
 	int i = 0;
 
-	printf("#cisfun$ ");
-	fflush(stdout);
+	if (isatty(STDIN_FILENO))
+	{
+		printf("$ ");
+		fflush(stdout);
+	}
 
 	result = getline(&buffer, &bufferSize, stdin);
 	if (result == -1)
