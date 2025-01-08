@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
            cwd = getcwd(NULL, size);
             if (cwd != NULL)
             {
-                 fprintf(stderr, "%s/%s: %d: %s: command not found\n", cwd, argv[0], 1, args[0]);
+                 fprintf(stderr, "%s/%s: %d: %s: not found\n", cwd, argv[0], 1, args[0]);
                 free(cwd);
             }
 			else
