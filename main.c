@@ -23,14 +23,13 @@ int main(int argc, char *argv[])
 	while (1)
 	{
 		input = user_input();
-		printf("%s\n", input);
 		if (access(input, F_OK) == 0)
 		{
 			printf("Executable\n");
 		}
 		else
 		{
-			printf("Not an executable\n");
+			printf("No such file or directory\n");
 		}
 
 		free(input);
