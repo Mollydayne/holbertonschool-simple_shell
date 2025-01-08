@@ -1,15 +1,16 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdio.h>
+/*---LIBRARIES---*/
+
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
-#include <sys/wait.h>
 #include <string.h>
 
+/*---PROTOTYPES---*/
+
 char *user_input();
-void exec_command(char *input, char *argv[]);
-char **split_command(char *input);
-char *find_executable(char *command);
+void sigint(int sig);
 
 #endif

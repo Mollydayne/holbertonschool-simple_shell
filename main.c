@@ -1,7 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 /**
  * main - Entry point of the program
@@ -10,7 +7,7 @@
  * @argv: The array of arguments passed to the program
  *
  * Description:
- * This program continuously prompts the user for input
+ * This program continuously prompts the user for input,
  * checks if the provided input corresponds to an accessible
  * file path, and prints "Executable" if the file exists.
  *
@@ -19,48 +16,30 @@
 
 int main(int argc, char *argv[])
 {
-	size_t size = 0;
-	int i;
-	char *input, *executable, *cwd;
-	char **args;
+	char *input;
 	(void)argc;
 	(void)argv;
 
 	while (1)
 	{
 		input = user_input();
-
-		args = split_command(input);
-		if (args == NULL || args[0] == NULL)
+		if (input == NULL)
 		{
-			free(input);
-			free(args);
-			continue;
+			printf("\n");
+			break;
 		}
 
-		executable = find_executable(args[0]);
-		if (executable == NULL)
+		if (access(input, X_OK) == 0)
 		{
-			cwd = getcwd(NULL, size);
-			if (cwd != NULL)
+			if (execve(input, argv, __environ) == -1)
 			{
-				fprintf(stderr, "%s/%s: %d: %s: not found\n", cwd, argv[0], 1, args[0]);
-				free(cwd);
-			}
-			else
-			{
-				perror("getcwd");
+				perror(input);
 			}
 		}
 		else
 		{
-			exec_command(executable, args);
-			free(executable);
+			printf("No such file or directory or not executable\n");
 		}
-
-		for (i = 0; args[i] != NULL; i++)
-			free(args[i]);
-		free(args);
 		free(input);
 	}
 
