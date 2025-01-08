@@ -1,22 +1,58 @@
+#include "main.h"
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include <stddef.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
 /**
- * main - execve example²²²
+ * exec_command - Executes a command in a child process
  *
- * Return: Always 0.
+ * @input: The command to execute
+ * @argv: The arguments to pass to the command
+ *
+ * Description:
+ * This function is called by the parent process to create a child
+ * process, execute the command with `execve()`, and handle the 
+ * status of the child process.
  */
-int main(void)
+void exec_command(char *input, char *argv[])
 {
-    char *argv[] = {"/bin/ls", "-l", "/usr/", NULL};
+    pid_t pid;
+    int status;
 
-    printf("Before execve\n");
-    if (execve(argv[0], argv, NULL) == -1)
+    pid = fork();
+
+    if (pid == -1)
     {
-        perror("Error:");
+        perror("An error occured during the fork");
+        free(input);
+        exit(EXIT_FAILURE);
     }
-    printf("After execve\n");
-    return (0);
-} 
+    else if (pid == 0)
+    {
+
+        execve(input, argv, NULL);
+        
+        perror("An error occured during execution");
+        free(input);
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+  
+        wait(&status);
+
+        if (status == 0)
+        {
+            /* printf("The process has succeeded ( return code : 0)\n"); */
+        }
+        else if ((status & 0xFF) != 0)
+        {
+            printf("The process has been killed by a signal.\n");
+        }
+        else
+        {
+            printf("The process failed with the following error code : %d\n", status >> 8);
+        }
+    }
+}

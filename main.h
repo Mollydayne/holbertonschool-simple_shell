@@ -2,15 +2,14 @@
 #define MAIN_H
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
+#include <string.h>
 
-#define MAX_CMD_LEN 1024
-
-char *find_command_path(char *command);
+char *user_input();
+void exec_command(char *input, char *argv[]);
+char **split_command(char *input);
+char *find_executable(char *command);
 
 #endif
