@@ -19,7 +19,7 @@ char *user_input()
 {
 	char *buffer = NULL;
 	size_t bufferSize = 0;
-	int result = 0;
+	ssize_t result = 0;
 	int i = 0;
 
 	printf("$ ");
@@ -28,12 +28,8 @@ char *user_input()
 	result = getline(&buffer, &bufferSize, stdin);
 	if (result == -1)
 	{
-		if (buffer != NULL)
-		{
-			free(buffer);
-		}
-
-		exit(EXIT_FAILURE);
+		free(buffer);
+		return (NULL);
 	}
 
 	for (i = 0; buffer[i] != '\0'; i++)
