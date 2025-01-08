@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 	int pidStatus;
 	(void)argc;
 	(void)argv;
+	signal(SIGINT, signal_intercepter);
 
 	while (1)
 	{
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
 			{
 				exit(EXIT_FAILURE);
 			}
+
 			if (pid == 0)
 			{
 				if (execve(input, argv, __environ) == -1)
@@ -49,7 +51,7 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-			printf("No such file or directory or not executable\n");
+			printf("%s: No such file or directory\n", argv[0]);
 		}
 		free(input);
 	}

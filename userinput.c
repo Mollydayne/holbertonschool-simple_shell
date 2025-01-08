@@ -24,7 +24,6 @@ char *user_input()
 	result = getline(&buffer, &bufferSize, stdin);
 	if (result == -1)
 	{
-		printf("hello\n");
 		if (buffer != NULL)
 		{
 			free(buffer);
