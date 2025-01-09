@@ -11,12 +11,12 @@
  * the user's input.
  */
 
-char *user_input()
+char **user_input()
 {
 	char *buffer = NULL;
+	char **tokens;
 	size_t bufferSize = 0;
 	ssize_t result = 0;
-	int i = 0;
 
 	if (isatty(STDIN_FILENO))
 	{
@@ -35,13 +35,12 @@ char *user_input()
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; buffer[i] != '\0'; i++)
+	if (buffer[result - 1] == '\n')
 	{
-		if (buffer[i] == '\n')
-		{
-			buffer[i] = '\0';
-			break;
-		}
+		buffer[result - 1] = '\0';
 	}
-	return (buffer);
+
+	tokens = split_line(buffer);
+
+	return (tokens);
 }

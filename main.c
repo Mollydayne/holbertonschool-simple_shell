@@ -17,7 +17,7 @@
 
 int main(int argc, char *argv[])
 {
-	char *input;
+	char **input;
 	pid_t pid;
 	int pidStatus;
 	(void)argc;
@@ -26,7 +26,8 @@ int main(int argc, char *argv[])
 	while (1)
 	{
 		input = user_input();
-		if (access(input, X_OK) == 0)
+
+		if (access(input[0], X_OK) == 0)
 		{
 			pid = fork();
 			if (pid == -1)
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
 
 			if (pid == 0)
 			{
-				if (execve(input, argv, __environ) == -1)
+				if (execve(input[0], argv, __environ) == -1)
 				{
 					perror("Failed to execute command");
 					free(input);

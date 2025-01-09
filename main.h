@@ -12,7 +12,8 @@
 
 /*---PROTOTYPES---*/
 
-char *user_input();
+char **user_input();
 void signal_intercepter(int sig);
+char **split_line(char *line);
 
 #endif
