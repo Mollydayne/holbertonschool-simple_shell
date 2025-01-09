@@ -1,3 +1,6 @@
+
+![catmeme](https://github.com/user-attachments/assets/02f8dbac-ab01-46ae-a786-f1e96ebeebe0)
+
 # 🐚 Simple Shell
 
 Welcome to **Simple Shell**, we've tried to create a minimalist shell that functions as a command interpreter on Linux. This project was developed as part of the Holberton School program, in 2025. 🚀
