@@ -66,10 +66,6 @@ Run the shell in either interactive or non-interactive mode:
 - Built-in commands such as:
   - `exit`: Exits the shell.
 
-### 🚫 Limitations
-- Does not support advanced operators (`&&`, `||`, `;`, etc.).
-- Does not handle shell scripts.
-
 ---
 
 ## 👩‍💻 Contributors
@@ -81,8 +77,8 @@ The authors of this project are listed in the [AUTHORS](./AUTHORS) file.
 ## 📖 Resources
 
 - [Introduction to Shell](https://en.wikipedia.org/wiki/Shell_(computing)) 🐚
-- [Documentation on execve()](https://man7.org/linux/man-pages/man2/execve.2.html)
-- [Environment Variables](https://www.geeksforgeeks.org/environment-variables-in-linuxunix/)
+- [Thompson Shell : first Unix Shell](https://en.wikipedia.org/wiki/Thompson_shell)
+- [Ken Thompson : creator of the unix shell](https://en.wikipedia.org/wiki/Ken_Thompson)
 
 ---
 
