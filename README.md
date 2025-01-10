@@ -44,6 +44,9 @@ To compile the project, use `gcc` with the following options:
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
 
+![SimpleShellFlowchart](https://github.com/user-attachments/assets/92355cfd-150f-4ba8-b40e-56a0ad7b4175)
+
+
 ### ▶️ Execution
 Run the shell in either interactive or non-interactive mode:
 - **Interactive Mode:**
